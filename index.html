@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Score Predictor</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f2f6ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            width: 350px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 10px 25px;
+            background: #4f46e5;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        h2 {
+            color: #4f46e5;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <h2>🎓 Student Score Predictor</h2>
+
+        <input type="number" id="hours" placeholder="Hours Studied">
+        <input type="number" id="sleep" placeholder="Sleep Hours">
+        <input type="number" id="attendance" placeholder="Attendance %">
+
+        <br><br>
+        <button onclick="predict()">Predict Score</button>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        // Simple ML formula (simulated model)
+        function predict() {
+            let hours = parseFloat(document.getElementById("hours").value);
+            let sleep = parseFloat(document.getElementById("sleep").value);
+            let attendance = parseFloat(document.getElementById("attendance").value);
+
+            if (isNaN(hours) || isNaN(sleep) || isNaN(attendance)) {
+                document.getElementById("result").innerHTML = "Please enter all values!";
+                return;
+            }
+
+            // Linear Regression like formula
+            let score = (hours * 5) + (sleep * 3) + (attendance * 0.3);
+
+            if (score > 100) score = 100;
+
+            document.getElementById("result").innerHTML =
+                "Predicted Final Score: " + score.toFixed(2);
+        }
+    </script>
+</body>
+</html>
